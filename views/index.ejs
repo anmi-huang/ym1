@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include shared/head %>
+</head>
+
+<body>
+  <% include shared/navbar %>
+
+    <header id="indexHeader" class="jumbotron header">
+      <div class="container">
+        <h1>Home Page</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+    </header>
+    <section class="py-3">
+      <div class="container">
+        <h1>商品列表</h1>
+        <div class="row">
+          <% productList.forEach(product=> { %>
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <img class="card-img-top" src="<%= product.image %>" alt="">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= product.name %>
+                  </h4>
+                  <p class="card-text">
+                    ＄<%= product.price %>
+                  </p>
+                  <p class="card-text">
+                    <%= product.category %>
+                  </p>
+                  <% if(auth.isAdmin) { %>
+                    <a href="./product/edit/<%= product.id%>" class="btn btn-warning">編輯產品</a>
+                    <% } %>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+      </div>
+    </section>
+    <% include shared/scripts %>
+</body>
+
+</html>
